@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SystemD Services Monitor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="{{ url_for('static', filename='Logo.png') }}" alt="SystemD Service Monitor" class="logo">
+                <h1>SystemD Services Monitor</h1>
+            </div>
+            <div class="status-info">
+                <span class="last-update">Last updated: <span id="lastUpdate">Never</span></span>
+                <span class="auto-refresh">Auto-refresh: 5s</span>
+            </div>
+        </header>
+
+        <div class="controls">
+            <button id="refreshBtn" class="btn btn-primary">🔄 Refresh Now</button>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="🔍 Search services..." class="search-input">
+            </div>
+            <div class="legend">
+                <span class="legend-item">
+                    <span class="status-indicator active"></span> Active
+                </span>
+                <span class="legend-item">
+                    <span class="status-indicator inactive"></span> Inactive
+                </span>
+                <span class="legend-item">
+                    <span class="status-indicator failed"></span> Failed
+                </span>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                Loading services...
+            </div>
+            
+            <table id="servicesTable" class="services-table" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>Service Name</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>State</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="servicesBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div id="error" class="error-message" style="display: none;"></div>
+        <div id="notification" class="notification" style="display: none;"></div>
+        
+        <footer>
+            <p>Total services: <span id="serviceCount">0</span> | Active: <span id="activeCount">0</span> | Inactive: <span id="inactiveCount">0</span> | Failed: <span id="failedCount">0</span></p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
