@@ -1,5 +1,7 @@
+import { useState, useMemo } from 'react';
 import { Header } from './components/Header';
 import { Controls } from './components/Controls';
+import { StatusTabs, type StatusFilter } from './components/StatusTabs';
 import { ServicesTable } from './components/ServicesTable';
 import { Footer } from './components/Footer';
 import { Notification } from './components/Notification';
@@ -23,6 +25,24 @@ function App() {
     closeNotification,
   } = useServices();
 
+  const [activeTab, setActiveTab] = useState<StatusFilter>('all');
+
+  const tabFilteredServices = useMemo(() => {
+    if (activeTab === 'all') {
+      return filteredServices;
+    }
+    return filteredServices.filter(service => service.status === activeTab);
+  }, [filteredServices, activeTab]);
+
+  const tabCounts = useMemo(() => {
+    return {
+      all: filteredServices.length,
+      active: filteredServices.filter(s => s.status === 'active').length,
+      inactive: filteredServices.filter(s => s.status === 'inactive').length,
+      failed: filteredServices.filter(s => s.status === 'failed').length,
+    };
+  }, [filteredServices]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
       <div className="container max-w-7xl mx-auto px-5 py-6 min-h-screen flex flex-col">
@@ -34,6 +54,14 @@ function App() {
           onSearchChange={handleSearchChange}
           isRefreshing={isRefreshing}
         />
+
+        {!loading && !error && (
+          <StatusTabs
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            counts={tabCounts}
+          />
+        )}
 
         {loading ? (
           <div className="flex-1 bg-gray-900/95 backdrop-blur-lg rounded-xl shadow-xl border border-white/10 flex flex-col items-center justify-center gap-6 p-16">
@@ -47,7 +75,7 @@ function App() {
         ) : (
           <div className="flex-1">
             <ServicesTable
-              services={filteredServices}
+              services={tabFilteredServices}
               onServiceAction={handleServiceAction}
               actioningServices={actioningServices}
             />
