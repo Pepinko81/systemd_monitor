@@ -23,37 +23,37 @@ export function StatusTabs({ activeTab, onTabChange, counts }: StatusTabsProps) 
 
   const getTabStyles = (tabId: StatusFilter) => {
     const isActive = activeTab === tabId;
-    const baseStyles = 'flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300 border-2';
+    const baseStyles = 'flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 border-2';
 
     if (tabId === 'all') {
       return `${baseStyles} ${
         isActive
-          ? 'bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-500/30'
-          : 'bg-blue-600/10 text-blue-400 border-blue-600/30 hover:bg-blue-600/20 hover:border-blue-600/50'
+          ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white border-orange-400 shadow-xl shadow-orange-400/40'
+          : 'bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100 hover:border-orange-300 hover:shadow-lg'
       }`;
     }
 
     if (tabId === 'active') {
       return `${baseStyles} ${
         isActive
-          ? 'bg-green-600 text-white border-green-600 shadow-lg shadow-green-500/30'
-          : 'bg-green-600/10 text-green-400 border-green-600/30 hover:bg-green-600/20 hover:border-green-600/50'
+          ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white border-emerald-400 shadow-xl shadow-emerald-400/40'
+          : 'bg-emerald-50 text-emerald-600 border-emerald-200 hover:bg-emerald-100 hover:border-emerald-300 hover:shadow-lg'
       }`;
     }
 
     if (tabId === 'inactive') {
       return `${baseStyles} ${
         isActive
-          ? 'bg-yellow-600 text-white border-yellow-600 shadow-lg shadow-yellow-500/30'
-          : 'bg-yellow-600/10 text-yellow-400 border-yellow-600/30 hover:bg-yellow-600/20 hover:border-yellow-600/50'
+          ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-white border-amber-400 shadow-xl shadow-amber-400/40'
+          : 'bg-amber-50 text-amber-600 border-amber-200 hover:bg-amber-100 hover:border-amber-300 hover:shadow-lg'
       }`;
     }
 
     if (tabId === 'failed') {
       return `${baseStyles} ${
         isActive
-          ? 'bg-red-600 text-white border-red-600 shadow-lg shadow-red-500/30'
-          : 'bg-red-600/10 text-red-400 border-red-600/30 hover:bg-red-600/20 hover:border-red-600/50'
+          ? 'bg-gradient-to-r from-rose-500 to-red-500 text-white border-rose-400 shadow-xl shadow-rose-400/40'
+          : 'bg-rose-50 text-rose-600 border-rose-200 hover:bg-rose-100 hover:border-rose-300 hover:shadow-lg'
       }`;
     }
 
@@ -61,7 +61,7 @@ export function StatusTabs({ activeTab, onTabChange, counts }: StatusTabsProps) 
   };
 
   return (
-    <div className="bg-gray-900/95 backdrop-blur-lg p-5 rounded-xl mb-5 shadow-xl border border-white/10">
+    <div className="bg-gradient-to-r from-white to-orange-50 backdrop-blur-lg p-5 rounded-2xl mb-6 shadow-xl border border-orange-200/50">
       <div className="flex flex-wrap gap-3 justify-center md:justify-start">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -75,7 +75,7 @@ export function StatusTabs({ activeTab, onTabChange, counts }: StatusTabsProps) 
             >
               <Icon className="w-5 h-5" />
               <span>{tab.label}</span>
-              <span className="ml-1 px-2 py-0.5 rounded-full bg-white/20 text-xs font-bold">
+              <span className="ml-1 px-2.5 py-0.5 rounded-full bg-white/30 text-xs font-bold backdrop-blur-sm">
                 {count}
               </span>
             </button>

@@ -18,26 +18,26 @@ export function Notification({ message, type, onClose }: NotificationProps) {
 
   return (
     <div
-      className={`fixed top-4 right-4 z-50 max-w-md p-4 rounded-lg shadow-2xl border backdrop-blur-lg animate-slideIn ${
+      className={`fixed top-4 right-4 z-50 max-w-md p-5 rounded-2xl shadow-2xl border-2 backdrop-blur-lg animate-slideIn ${
         type === 'success'
-          ? 'bg-green-500/90 text-white border-green-600'
-          : 'bg-red-500/90 text-white border-red-600'
+          ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white border-emerald-400'
+          : 'bg-gradient-to-r from-rose-500 to-red-500 text-white border-rose-400'
       }`}
     >
       <div className="flex items-start gap-3">
         <div className="flex-shrink-0 mt-0.5">
           {type === 'success' ? (
-            <CheckCircle className="w-5 h-5" />
+            <CheckCircle className="w-6 h-6" />
           ) : (
-            <XCircle className="w-5 h-5" />
+            <XCircle className="w-6 h-6" />
           )}
         </div>
-        <p className="flex-1 font-medium text-sm">{message}</p>
+        <p className="flex-1 font-semibold text-sm">{message}</p>
         <button
           onClick={onClose}
-          className="flex-shrink-0 hover:bg-white/20 rounded p-1 transition-colors duration-200"
+          className="flex-shrink-0 hover:bg-white/20 rounded-lg p-1.5 transition-colors duration-200"
         >
-          <X className="w-4 h-4" />
+          <X className="w-5 h-5" />
         </button>
       </div>
     </div>

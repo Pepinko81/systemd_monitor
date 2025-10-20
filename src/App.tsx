@@ -44,7 +44,7 @@ function App() {
   }, [filteredServices]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-rose-50">
       <div className="container max-w-7xl mx-auto px-5 py-6 min-h-screen flex flex-col">
         <Header lastUpdate={lastUpdate} />
 
@@ -64,13 +64,13 @@ function App() {
         )}
 
         {loading ? (
-          <div className="flex-1 bg-gray-900/95 backdrop-blur-lg rounded-xl shadow-xl border border-white/10 flex flex-col items-center justify-center gap-6 p-16">
-            <Loader2 className="w-12 h-12 text-blue-500 animate-spin" />
-            <p className="text-gray-400 text-xl">Loading services...</p>
+          <div className="flex-1 bg-white/80 backdrop-blur-lg rounded-2xl shadow-2xl border border-orange-200/50 flex flex-col items-center justify-center gap-6 p-16">
+            <Loader2 className="w-12 h-12 text-orange-500 animate-spin" />
+            <p className="text-gray-600 text-xl font-medium">Loading services...</p>
           </div>
         ) : error ? (
-          <div className="flex-1 bg-red-500/10 backdrop-blur-lg rounded-xl shadow-xl border border-red-500/30 p-8 text-center">
-            <p className="text-red-400 text-lg font-medium">{error}</p>
+          <div className="flex-1 bg-red-50/80 backdrop-blur-lg rounded-2xl shadow-2xl border border-red-200/50 p-8 text-center">
+            <p className="text-red-600 text-lg font-semibold">{error}</p>
           </div>
         ) : (
           <div className="flex-1">
